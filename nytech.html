@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nytech — Soluções Tecnológicas Inovadoras</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --azul-principal: #0066FF;
+            --azul-escuro: #0052CC;
+            --roxo: #9945FF;
+            --rosa: #FF006E;
+            --fundo: #F8F9FA;
+            --texto: #1A1A1A;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar-custom {
+            background: #FFFFFF;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #1A1A1A;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--texto);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--azul-principal);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
+        }
+
+        .nav-btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--azul-principal);
+            color: var(--azul-principal);
+            margin-right: 12px;
+        }
+
+        .nav-btn-secondary:hover {
+            background: var(--azul-principal);
+            color: #fff;
+        }
+
+        /* ── HERO ── */
+        .hero-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            opacity: 0.08;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            color: var(--texto);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .gradient {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #666;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: var(--azul-principal);
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--azul-principal);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--azul-principal);
+            color: #fff;
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid #ddd;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--azul-principal);
+            font-family: 'Syne', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── FEATURES ── */
+        .features-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--azul-principal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--texto);
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .section-desc {
+            font-size: 1rem;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: #f9f9f9;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #efefef;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .feature-card:hover {
+            background: #fff;
+            border-color: var(--azul-principal);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 102, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--texto);
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ── PARTNERSHIP ── */
+        .partnership-section {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .partnership-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .partnership-text {
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .partnership-logos {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .partner-logo {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .cta-text {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .footer-link {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--azul-principal);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        .footer-bottom a {
+            color: var(--azul-principal);
+            text-decoration: none;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 12px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .stats-row {
+                gap: 20px;
+            }
+
+            .partnership-logos {
+                gap: 24px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#" class="navbar-brand">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M80 140c-15 0-27-12-27-27s12-27 27-27' fill='none' stroke='%230066FF' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M80 140c-15 0-27 12-27 27s12 27 27 27' fill='none' stroke='%239945FF' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='60' cy='90' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='65' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='140' r='7' fill='%239945FF'/%3E%3Ccircle cx='140' cy='100' r='8' fill='%23FF006E'/%3E%3Ctext x='170' y='130' font-family='Syne' font-size='72' font-weight='800' fill='%230052CC'%3ENytech%3C/text%3E%3C/svg%3E" alt="Nytech">
+            </a>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Serviços</a>
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#" class="nav-link">Blog</a>
+                <a href="index.html" class="nav-btn nav-btn-secondary">PedreiroPro</a>
+                <a href="#contact" class="nav-btn">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">
+                        Tecnologia que <span class="gradient">transforma</span> negócios
+                    </h1>
+                    <p class="hero-subtitle">
+                        Soluções inovadoras em software, inteligência artificial e transformação digital para empresas em crescimento.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">
+                            <i class="bi bi-lightning-fill"></i> Começar agora
+                        </a>
+                        <a href="#features" class="btn-secondary">
+                            <i class="bi bi-play-circle"></i> Ver mais
+                        </a>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projetos entregues</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Clientes satisfeitos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Anos de experiência</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 hero-image">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+                        <!-- Fundo -->
+                        <circle cx="200" cy="200" r="180" fill="#f5f7ff" opacity="0.5"/>
+
+                        <!-- Elementos decorativos tech -->
+                        <g stroke="#0066FF" stroke-width="2" fill="none">
+                            <circle cx="100" cy="150" r="40"/>
+                            <circle cx="300" cy="150" r="40"/>
+                            <circle cx="200" cy="300" r="40"/>
+                        </g>
+
+                        <!-- Linhas conectoras -->
+                        <g stroke="#9945FF" stroke-width="2" fill="none" opacity="0.6">
+                            <path d="M140 160 L260 160"/>
+                            <path d="M150 200 L250 200"/>
+                            <path d="M160 240 L240 240"/>
+                        </g>
+
+                        <!-- Pontos de conexão -->
+                        <circle cx="100" cy="150" r="6" fill="#0066FF"/>
+                        <circle cx="300" cy="150" r="6" fill="#0066FF"/>
+                        <circle cx="200" cy="300" r="6" fill="#FF006E"/>
+                        <circle cx="200" cy="200" r="4" fill="#9945FF"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">NOSSOS SERVIÇOS</div>
+                <h2 class="section-title">O que oferecemos</h2>
+                <p class="section-desc">Soluções completas de tecnologia para modernizar seu negócio</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💻</span>
+                    <h3 class="feature-title">Desenvolvimento Web</h3>
+                    <p class="feature-text">Aplicações web modernas, responsivas e de alto desempenho. React, Vue, Node.js e muito mais.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Aplicativos Mobile</h3>
+                    <p class="feature-text">Apps nativos e cross-platform para iOS e Android com melhor experiência do usuário.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3 class="feature-title">IA e Machine Learning</h3>
+                    <p class="feature-text">Inteligência artificial customizada para automação, análise de dados e previsões.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">☁️</span>
+                    <h3 class="feature-title">Cloud e DevOps</h3>
+                    <p class="feature-text">Infraestrutura em nuvem, CI/CD, containerização e gerenciamento de aplicações.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Segurança da Informação</h3>
+                    <p class="feature-text">Proteção de dados, criptografia, testes de segurança e compliance com padrões.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Análise de Dados</h3>
+                    <p class="feature-text">Big data, business intelligence e dashboards para decisões baseadas em dados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERSHIP -->
+    <section class="partnership-section">
+        <div class="container">
+            <h2 class="partnership-title">Parceiro Estratégico de Inovação</h2>
+            <p class="partnership-text">
+                Nytech trabalha em conjunto com PedreiroPro, oferecendo soluções tecnológicas avançadas para transformar o setor da construção e infraestrutura.
+            </p>
+
+            <div class="partnership-logos">
+                <div class="partner-logo">Nytech</div>
+                <div style="font-size: 2rem; opacity: 0.5;">+</div>
+                <div class="partner-logo">PedreiroPro</div>
+            </div>
+
+            <a href="index.html" class="btn-primary" style="display: inline-block;">
+                <i class="bi bi-arrow-right"></i> Ir para PedreiroPro
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2 class="cta-title">Pronto para transformar seu negócio?</h2>
+            <p class="cta-text">Entre em contato conosco e descubra como a tecnologia pode impulsionar seu crescimento.</p>
+            <button class="btn-primary">
+                <i class="bi bi-envelope"></i> Solicitar Apresentação
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nytech</h4>
+                    <p style="color: #aaa; margin-bottom: 0;">Soluções tecnológicas para o futuro.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <a href="#" class="footer-link">Desenvolvimento Web</a>
+                    <a href="#" class="footer-link">Aplicativos Mobile</a>
+                    <a href="#" class="footer-link">Inteligência Artificial</a>
+                    <a href="#" class="footer-link">Cloud Computing</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <a href="#" class="footer-link">Sobre</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Carreira</a>
+                    <a href="index.html" class="footer-link">PedreiroPro</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="#" class="footer-link">contato@nytech.com</a>
+                    <a href="#" class="footer-link">(11) 98765-4321</a>
+                    <a href="#" class="footer-link">São Paulo, SP</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nytech. Todos os direitos reservados. | <a href="#">Privacidade</a> | <a href="#">Termos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animação ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>

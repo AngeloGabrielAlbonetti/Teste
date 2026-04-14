@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PedreiroPro — Encontre o Melhor Profissional</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <style>
+         :root {
+            --laranja: #F05A2A;
+            --laranja-escuro: #C94010;
+            --cinza-fundo: #F5F4F0;
+            --texto: #1A1A1A;
+            --card-bg: #FFFFFF;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cinza-fundo);
+            color: var(--texto);
+            margin: 0;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+        }
+        /* ── NAVBAR ── */
+        
+        .navbar-custom {
+            background: #1A1A1A;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand-text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-brand-text span {
+            color: var(--laranja);
+        }
+        
+        .nav-btn-outline {
+            border: 1.5px solid #fff;
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .nav-btn-outline:hover {
+            background: #fff;
+            color: #1A1A1A;
+        }
+        
+        .nav-btn-filled {
+            background: var(--laranja);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            text-decoration: none;
+            border: 1.5px solid var(--laranja);
+            transition: all 0.2s;
+        }
+        
+        .nav-btn-filled:hover {
+            background: var(--laranja-escuro);
+            color: #fff;
+        }
+        /* ── HERO ── */
+        
+        .hero-section {
+            background: #1A1A1A;
+            padding: 72px 0 56px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 380px;
+            height: 380px;
+            background: var(--laranja);
+            opacity: 0.08;
+            border-radius: 50%;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -40px;
+            width: 260px;
+            height: 260px;
+            background: var(--laranja);
+            opacity: 0.06;
+            border-radius: 50%;
+        }
+        
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+        
+        .hero-title span {
+            color: var(--laranja);
+        }
+        
+        .hero-sub {
+            color: #AAAAAA;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        /* Search Bar */
+        
+        .search-bar {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 8px 8px 8px 18px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        }
+        
+        .search-bar input,
+        .search-bar select {
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            background: transparent;
+            color: var(--texto);
+        }
+        
+        .search-bar input {
+            flex: 1;
+        }
+        
+        .search-bar select {
+            border-left: 1.5px solid #eee;
+            padding-left: 12px;
+        }
+        
+        .search-bar button {
+            background: var(--laranja);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        
+        .search-bar button:hover {
+            background: var(--laranja-escuro);
+        }
+        /* Stats strip */
+        
+        .stats-strip {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            color: #fff;
+        }
+        
+        .stat-item strong {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            color: var(--laranja);
+            display: block;
+        }
+        
+        .stat-item span {
+            font-size: 0.82rem;
+            color: #999;
+        }
+        /* ── FILTERS BAR ── */
+        
+        .filters-bar {
+            background: #FFFFFF;
+            border-bottom: 1px solid #EBEBEB;
+            padding: 12px 0;
+        }
+        
+        .filter-pill {
+            background: #F5F4F0;
+            border: 1.5px solid #E0DED8;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 0.83rem;
+            cursor: pointer;
+            transition: all 0.18s;
+            white-space: nowrap;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--texto);
+        }
+        
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: var(--laranja);
+            border-color: var(--laranja);
+            color: #fff;
+        }
+        
+        .filter-pills-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+        
+        .filter-pills-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        /* ── SECTION TITLES ── */
+        
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--texto);
+            margin-bottom: 4px;
+        }
+        
+        .section-sub {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+        /* ── SERVICE CARD ── */
+        
+        .service-card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1.5px solid #EBEBEB;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.10);
+        }
+        
+        .card-img-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 180px;
+            background: #EEE;
+        }
+        
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s;
+        }
+        
+        .service-card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--laranja);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            letter-spacing: 0.3px;
+        }
+        
+        .card-badge.badge-verificado {
+            background: #1A7F37;
+        }
+        
+        .card-fav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 1rem;
+        }
+        
+        .card-fav:hover {
+            background: #fff;
+        }
+        
+        .card-fav.ativo {
+            color: #E24B4A;
+        }
+        
+        .card-body-custom {
+            padding: 14px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .prof-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .prof-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #EBEBEB;
+        }
+        
+        .prof-name {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--texto);
+            line-height: 1.2;
+        }
+        
+        .prof-loc {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .card-service-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 6px;
+            color: var(--texto);
+            line-height: 1.3;
+        }
+        
+        .card-desc {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .stars-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .stars-row .stars {
+            color: #F0A500;
+            letter-spacing: 1px;
+        }
+        
+        .stars-row .count {
+            color: #999;
+        }
+        
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #F0F0F0;
+            padding-top: 10px;
+        }
+        
+        .price-from {
+            font-size: 0.75rem;
+            color: #999;
+        }
+        
+        .price-val {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--laranja);
+        }
+        
+        .btn-contratar {
+            background: var(--laranja);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 0.8rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.18s;
+        }
+        
+        .btn-contratar:hover {
+            background: var(--laranja-escuro);
+        }
+        /* ── COMO FUNCIONA ── */
+        
+        .como-section {
+            background: #1A1A1A;
+            padding: 64px 0;
+        }
+        
+        .como-step {
+            text-align: center;
+            padding: 28px 20px;
+        }
+        
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(240, 90, 42, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.6rem;
+            border: 2px solid rgba(240, 90, 42, 0.3);
+        }
+        
+        .step-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--laranja);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        
+        .step-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .step-desc {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        .step-arrow {
+            color: var(--laranja);
+            font-size: 1.5rem;
+            align-self: center;
+            opacity: 0.5;
+        }
+        /* ── CATEGORIAS ── */
+        
+        .cat-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 22px 18px;
+            text-align: center;
+            border: 1.5px solid #EBEBEB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .cat-card:hover {
+            border-color: var(--laranja);
+            box-shadow: 0 6px 20px rgba(240, 90, 42, 0.12);
+            transform: translateY(-3px);
+        }
+        
+        .cat-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .cat-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--texto);
+            margin-bottom: 3px;
+        }
+        
+        .cat-count {
+            font-size: 0.78rem;
+            color: #999;
+        }
+        /* ── MODAL ── */
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-box {
+            background: #fff;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            transform: translateY(20px);
+            transition: transform 0.25s;
+        }
+        
+        .modal-overlay.show .modal-box {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            background: #F5F4F0;
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: #E8E8E8;
+        }
+        /* ── TOAST ── */
+        
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .toast-msg {
+            background: #1A1A1A;
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            min-width: 240px;
+        }
+        
+        .toast-msg .toast-icon {
+            font-size: 1rem;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(60px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        /* ── FOOTER ── */
+        
+        .footer {
+            background: #111;
+            color: #999;
+            padding: 48px 0 24px;
+        }
+        
+        .footer-brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .footer-brand span {
+            color: var(--laranja);
+        }
+        
+        .footer h6 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+        
+        .footer a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: var(--laranja);
+        }
+        
+        .footer-divider {
+            border-color: #222;
+            margin: 32px 0 20px;
+        }
+        
+        .footer-bottom {
+            font-size: 0.78rem;
+            color: #555;
+            text-align: center;
+        }
+        /* ── ANUNCIAR SECTION ── */
+        
+        .anunciar-section {
+            background: linear-gradient(135deg, #F05A2A 0%, #C94010 100%);
+            padding: 56px 0;
+        }
+        /* ── RESPONSIVE ── */
+        
+        @media(max-width: 576px) {
+            .search-bar {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            .search-bar select {
+                border-left: none;
+                border-top: 1px solid #eee;
+                padding-left: 0;
+                width: 100%;
+            }
+            .search-bar button {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .stats-strip {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar-custom">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="navbar-brand-text">Pedreiro<span>Pro</span></div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="nav-btn-outline d-none d-sm-inline">Entrar</a>
+                    <a href="nytech-index.html" class="nav-btn-outline d-none d-sm-inline" style="border-color: #9945FF; color: #9945FF;">Nytech</a>
+                    <a href="#" class="nav-btn-filled" onclick="abrirModalAnunciar(event)">
+                        <i class="bi bi-plus-circle me-1"></i>Anunciar Serviço
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title">Encontre o pedreiro<br><span>ideal para sua obra</span></h1>
+                    <p class="hero-sub">Profissionais verificados, orçamento grátis e serviço com garantia.</p>
+
+                    <div class="search-bar">
+                        <i class="bi bi-search text-secondary"></i>
+                        <input type="text" id="inputBusca" placeholder="O que você precisa? Ex: alvenaria, rejunte..." />
+                        <select id="selectCidade">
+            <option value="">Toda região</option>
+            <option>Peabiru, PR</option>
+            <option>Campo Mourão, PR</option>
+            <option>Maringá, PR</option>
+            <option>Cascavel, PR</option>
+            <option>Curitiba, PR</option>
+          </select>
+                        <button onclick="buscarServicos()"><i class="bi bi-search me-1"></i>Buscar</button>
+                    </div>
+
+                    <div class="stats-strip">
+                        <div class="stat-item"><strong id="cntProfissionais">142</strong><span>Profissionais</span></div>
+                        <div class="stat-item"><strong id="cntServicos">380</strong><span>Serviços realizados</span></div>
+                        <div class="stat-item"><strong>4.9</strong><span>Avaliação média</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FILTER BAR ── -->
+    <div class="filters-bar">
+        <div class="container">
+            <div class="filter-pills-scroll">
+                <button class="filter-pill active" data-filtro="todos">Todos</button>
+                <button class="filter-pill" data-filtro="alvenaria">Alvenaria</button>
+                <button class="filter-pill" data-filtro="reboco">Reboco</button>
+                <button class="filter-pill" data-filtro="piso">Piso</button>
+                <button class="filter-pill" data-filtro="azulejo">Azulejo</button>
+                <button class="filter-pill" data-filtro="reforma">Reforma</button>
+                <button class="filter-pill" data-filtro="demolição">Demolição</button>
+                <button class="filter-pill" data-filtro="fundação">Fundação</button>
+                <button class="filter-pill" data-filtro="hidráulica">Hidráulica</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CATEGORIAS ── -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <p class="section-sub" style="margin-bottom:6px;">Navegue por categoria</p>
+            <h2 class="section-title" style="margin-bottom:28px;">O que você precisa?</h2>
+            <div class="row g-3" id="categoriasGrid">
+                <!-- gerado por JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ANÚNCIOS ── -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-1 flex-wrap gap-2">
+                <div>
+                    <p class="section-sub mb-1">Profissionais disponíveis</p>
+                    <h2 class="section-title mb-0">Anúncios em destaque</h2>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="text-muted" style="font-size:.85rem;" id="totalResultados"></span>
+                    <select class="form-select form-select-sm" style="width:auto" id="selectOrdem" onchange="renderCards()">
+          <option value="relevancia">Relevância</option>
+          <option value="preco_asc">Menor preço</option>
+          <option value="preco_desc">Maior preço</option>
+          <option value="avaliacao">Melhor avaliação</option>
+        </select>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-1" id="cardsGrid">
+                <!-- gerado por JS -->
+            </div>
+            <div id="semResultados" class="text-center py-5 d-none">
+                <div style="font-size:3rem;">🔍</div>
+                <h5 class="mt-2">Nenhum serviço encontrado</h5>
+                <p class="text-muted">Tente outros termos ou remova os filtros.</p>
+            </div>
+            <div class="text-center mt-4" id="btnMaisWrap">
+                <button class="btn" style="background:var(--laranja);color:#fff;border-radius:10px;padding:10px 32px;font-family:'Syne',sans-serif;font-weight:600;" onclick="carregarMais()">
+        Carregar mais <i class="bi bi-arrow-down ms-1"></i>
+      </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COMO FUNCIONA ── -->
+    <section class="como-section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <p class="section-sub" style="color:#888;">Simples e seguro</p>
+                <h2 class="section-title" style="color:#fff;">Como funciona</h2>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="como-step">
+                        <div class="step-icon">🔍</div>
+                        <div class="step-num">Passo 1</div>
+                        <div class="step-title">Busque o serviço</div>
+                        <div class="step-desc">Pesquise pelo tipo de serviço e filtre por cidade.</div>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-1 text-center">
+                    <i class="bi bi-chevron-right step-arrow"></i>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="como-step">
+                        <div class="step-icon">📋</div>
+                        <div class="step-num">Passo 2</div>
+                        <div class="step-title">Compare perfis</div>
+                        <div class="step-desc">Veja avaliações, preços e portfólio de cada pedreiro.</div>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-1 text-center">
+                    <i class="bi bi-chevron-right step-arrow"></i>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="como-step">
+                        <div class="step-icon">💬</div>
+                        <div class="step-num">Passo 3</div>
+                        <div class="step-title">Entre em contato</div>
+                        <div class="step-desc">Converse pelo chat e solicite um orçamento grátis.</div>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-1 text-center">
+                    <i class="bi bi-chevron-right step-arrow"></i>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="como-step">
+                        <div class="step-icon">✅</div>
+                        <div class="step-num">Passo 4</div>
+                        <div class="step-title">Contrate com segurança</div>
+                        <div class="step-desc">Feche o acordo e acompanhe a execução do serviço.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── BANNER ANUNCIAR ── -->
+    <section class="anunciar-section">
+        <div class="container text-center text-white">
+            <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;margin-bottom:10px;">É pedreiro? Anuncie grátis!</h2>
+            <p style="opacity:0.85;max-width:480px;margin:0 auto 28px;font-size:1rem;">Cadastre seus serviços e receba pedidos de toda a região. Sem taxas para começar.</p>
+            <button class="btn" style="background:#fff;color:var(--laranja);border-radius:10px;padding:12px 36px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;" onclick="abrirModalAnunciar(event)">
+      Cadastrar serviço <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="footer-brand">Pedreiro<span>Pro</span></div>
+                    <p style="font-size:.85rem;line-height:1.7;">A plataforma que conecta clientes a pedreiros qualificados em todo o Brasil.</p>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6>Empresa</h6>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Carreiras</a>
+                    <a href="#">Contato</a>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6>Serviços</h6>
+                    <a href="#">Alvenaria</a>
+                    <a href="#">Reboco</a>
+                    <a href="#">Azulejo</a>
+                    <a href="#">Pisos</a>
+                    <a href="#">Reformas</a>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6>Ajuda</h6>
+                    <a href="#">Central de ajuda</a>
+                    <a href="#">Como funciona</a>
+                    <a href="#">Segurança</a>
+                    <a href="#">Termos de uso</a>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6>Redes sociais</h6>
+                    <a href="#"><i class="bi bi-instagram me-2"></i>Instagram</a>
+                    <a href="#"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                    <a href="#"><i class="bi bi-whatsapp me-2"></i>WhatsApp</a>
+                </div>
+            </div>
+            <hr class="footer-divider" />
+            <div class="footer-bottom">© 2025 PedreiroPro. Todos os direitos reservados.</div>
+        </div>
+    </footer>
+
+    <!-- ── MODAL DETALHES ── -->
+    <div class="modal-overlay" id="modalDetalhes">
+        <div class="modal-box">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;" id="modalTitulo">Título</h5>
+                <button class="modal-close" onclick="fecharModal('modalDetalhes')">✕</button>
+            </div>
+            <div id="modalConteudo"></div>
+        </div>
+    </div>
+
+    <!-- ── MODAL ANUNCIAR ── -->
+    <div class="modal-overlay" id="modalAnunciar">
+        <div class="modal-box">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Anunciar meu serviço</h5>
+                <button class="modal-close" onclick="fecharModal('modalAnunciar')">✕</button>
+            </div>
+            <form onsubmit="enviarAnuncio(event)">
+                <div class="mb-3">
+                    <label class="form-label fw-500" style="font-size:.9rem;">Seu nome</label>
+                    <input type="text" class="form-control" placeholder="Ex: João da Silva" required />
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-7">
+                        <label class="form-label fw-500" style="font-size:.9rem;">Cidade</label>
+                        <input type="text" class="form-control" placeholder="Ex: Peabiru, PR" required />
+                    </div>
+                    <div class="col-5">
+                        <label class="form-label fw-500" style="font-size:.9rem;">WhatsApp</label>
+                        <input type="tel" class="form-control" placeholder="(44) 99999-9999" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-500" style="font-size:.9rem;">Tipo de serviço</label>
+                    <select class="form-select" required>
+          <option value="">Selecione...</option>
+          <option>Alvenaria</option>
+          <option>Reboco</option>
+          <option>Azulejo e pastilha</option>
+          <option>Piso cerâmico</option>
+          <option>Reforma geral</option>
+          <option>Demolição</option>
+          <option>Fundação</option>
+          <option>Hidráulica</option>
+          <option>Pintura</option>
+        </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-500" style="font-size:.9rem;">Descrição do serviço</label>
+                    <textarea class="form-control" rows="3" placeholder="Descreva sua experiência e o que você oferece..." required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-500" style="font-size:.9rem;">Preço a partir de (R$)</label>
+                    <input type="number" class="form-control" placeholder="Ex: 80" min="0" required />
+                </div>
+                <button type="submit" class="btn w-100" style="background:var(--laranja);color:#fff;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;padding:12px;">
+        Publicar anúncio <i class="bi bi-send ms-1"></i>
+      </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ── TOAST CONTAINER ── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ── DADOS ──
+        const servicos = [{
+            id: 1,
+            titulo: "Alvenaria e construção de muros",
+            categoria: "alvenaria",
+            desc: "Construção de muros, paredes em tijolo, blocos e concreto. Experiência de 15 anos.",
+            prof: "Carlos Almeida",
+            cidade: "Peabiru, PR",
+            nota: 4.9,
+            avaliacoes: 87,
+            preco: 120,
+            tag: "Verificado",
+            img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=12"
+        }, {
+            id: 2,
+            titulo: "Reboco externo e interno",
+            categoria: "reboco",
+            desc: "Reboco massa única, chapisco e emboço para qualquer superfície. Acabamento impecável.",
+            prof: "Marcos Souza",
+            cidade: "Campo Mourão, PR",
+            nota: 4.7,
+            avaliacoes: 52,
+            preco: 90,
+            tag: "Destaque",
+            img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=33"
+        }, {
+            id: 3,
+            titulo: "Assentamento de piso e cerâmica",
+            categoria: "piso",
+            desc: "Piso porcelanato, cerâmica, ladrilho hidráulico. Corte preciso e rejunte perfeito.",
+            prof: "Diego Ferreira",
+            cidade: "Peabiru, PR",
+            nota: 5.0,
+            avaliacoes: 134,
+            preco: 75,
+            tag: "Verificado",
+            img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=41"
+        }, {
+            id: 4,
+            titulo: "Azulejo e pastilhas de banheiro",
+            categoria: "azulejo",
+            desc: "Azulejista especializado em banheiros e cozinhas. Corte manual e elétrico.",
+            prof: "Roberto Lima",
+            cidade: "Maringá, PR",
+            nota: 4.8,
+            avaliacoes: 61,
+            preco: 100,
+            tag: "",
+            img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=56"
+        }, {
+            id: 5,
+            titulo: "Reforma completa de casa",
+            categoria: "reforma",
+            desc: "Faço reformas do zero: elétrica, hidráulica, alvenaria, acabamento e pintura.",
+            prof: "Paulo Gomes",
+            cidade: "Cascavel, PR",
+            nota: 4.6,
+            avaliacoes: 29,
+            preco: 200,
+            tag: "Destaque",
+            img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=62"
+        }, {
+            id: 6,
+            titulo: "Demolição controlada",
+            categoria: "demolição",
+            desc: "Derrubada de paredes, lajes, fundações. Retirada de entulho inclusa no serviço.",
+            prof: "André Matos",
+            cidade: "Peabiru, PR",
+            nota: 4.5,
+            avaliacoes: 18,
+            preco: 150,
+            tag: "",
+            img: "https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=70"
+        }, {
+            id: 7,
+            titulo: "Fundação e radier",
+            categoria: "fundação",
+            desc: "Execução de sapata corrida, radier, balancim e estaca. Serviço com laudo técnico.",
+            prof: "Fábio Torres",
+            cidade: "Curitiba, PR",
+            nota: 4.9,
+            avaliacoes: 43,
+            preco: 250,
+            tag: "Verificado",
+            img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=8"
+        }, {
+            id: 8,
+            titulo: "Instalação hidráulica",
+            categoria: "hidráulica",
+            desc: "Encanamento, troca de canos, instalação de banheiros e cozinhas completas.",
+            prof: "Leandro Costa",
+            cidade: "Campo Mourão, PR",
+            nota: 4.7,
+            avaliacoes: 77,
+            preco: 110,
+            tag: "",
+            img: "https://images.unsplash.com/photo-1585704032915-c3400305e979?w=400&q=80",
+            avatar: "https://i.pravatar.cc/80?img=15"
+        }, ];
+
+        const categorias = [{
+            nome: "Alvenaria",
+            icon: "🧱",
+            filtro: "alvenaria",
+            count: 34
+        }, {
+            nome: "Reboco",
+            icon: "🪣",
+            filtro: "reboco",
+            count: 21
+        }, {
+            nome: "Piso",
+            icon: "🔲",
+            filtro: "piso",
+            count: 45
+        }, {
+            nome: "Azulejo",
+            icon: "🏠",
+            filtro: "azulejo",
+            count: 28
+        }, {
+            nome: "Reforma",
+            icon: "🔨",
+            filtro: "reforma",
+            count: 67
+        }, {
+            nome: "Demolição",
+            icon: "⛏️",
+            filtro: "demolição",
+            count: 12
+        }, {
+            nome: "Fundação",
+            icon: "🏗️",
+            filtro: "fundação",
+            count: 19
+        }, {
+            nome: "Hidráulica",
+            icon: "🔧",
+            filtro: "hidráulica",
+            count: 31
+        }, ];
+
+        let filtroAtivo = "todos";
+        let favs = new Set();
+        let visiveis = 6;
+        let buscaTermo = "";
+
+        // ── RENDER CATEGORIAS ──
+        function renderCategorias() {
+            const grid = document.getElementById("categoriasGrid");
+            grid.innerHTML = categorias.map(c => `
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      <div class="cat-card" onclick="filtrarPor('${c.filtro}')">
+        <div class="cat-icon">${c.icon}</div>
+        <div class="cat-name">${c.nome}</div>
+        <div class="cat-count">${c.count} profissionais</div>
+      </div>
+    </div>
+  `).join('');
+        }
+
+        // ── RENDER CARDS ──
+        function renderCards() {
+            const ordem = document.getElementById("selectOrdem").value;
+            let lista = servicos.filter(s => {
+                const matchFiltro = filtroAtivo === "todos" || s.categoria === filtroAtivo;
+                const matchBusca = !buscaTermo || s.titulo.toLowerCase().includes(buscaTermo) || s.desc.toLowerCase().includes(buscaTermo) || s.categoria.includes(buscaTermo);
+                return matchFiltro && matchBusca;
+            });
+
+            if (ordem === "preco_asc") lista.sort((a, b) => a.preco - b.preco);
+            else if (ordem === "preco_desc") lista.sort((a, b) => b.preco - a.preco);
+            else if (ordem === "avaliacao") lista.sort((a, b) => b.nota - a.nota);
+
+            const mostrar = lista.slice(0, visiveis);
+            const grid = document.getElementById("cardsGrid");
+            const semRes = document.getElementById("semResultados");
+            const btnMais = document.getElementById("btnMaisWrap");
+            document.getElementById("totalResultados").textContent = lista.length + " resultado(s)";
+
+            if (!lista.length) {
+                grid.innerHTML = "";
+                semRes.classList.remove("d-none");
+                btnMais.classList.add("d-none");
+                return;
+            }
+            semRes.classList.add("d-none");
+            btnMais.classList.toggle("d-none", mostrar.length >= lista.length);
+
+            grid.innerHTML = mostrar.map(s => {
+                        const stars = "★".repeat(Math.floor(s.nota)) + (s.nota % 1 >= 0.5 ? "½" : "");
+                        const favIcon = favs.has(s.id) ? "bi-heart-fill" : "bi-heart";
+                        const favClass = favs.has(s.id) ? "ativo" : "";
+                        const badgeClass = s.tag === "Verificado" ? "badge-verificado" : "";
+                        return `
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card" onclick="abrirDetalhes(${s.id})">
+          <div class="card-img-wrap">
+            <img src="${s.img}" alt="${s.titulo}" loading="lazy" />
+            ${s.tag ? `<span class="card-badge ${badgeClass}">${s.tag}</span>` : ""}
+            <button class="card-fav ${favClass}" onclick="toggleFav(event,${s.id})">
+              <i class="bi ${favIcon}"></i>
+            </button>
+          </div>
+          <div class="card-body-custom">
+            <div class="prof-row">
+              <img src="${s.avatar}" class="prof-avatar" alt="${s.prof}"/>
+              <div>
+                <div class="prof-name">${s.prof}</div>
+                <div class="prof-loc"><i class="bi bi-geo-alt me-1"></i>${s.cidade}</div>
+              </div>
+            </div>
+            <div class="card-service-title">${s.titulo}</div>
+            <div class="card-desc">${s.desc}</div>
+            <div class="stars-row">
+              <span class="stars">${stars}</span>
+              <span>${s.nota.toFixed(1)}</span>
+              <span class="count">(${s.avaliacoes} avaliações)</span>
+            </div>
+            <div class="price-row">
+              <div>
+                <div class="price-from">a partir de</div>
+                <div class="price-val">R$ ${s.preco}/dia</div>
+              </div>
+              <button class="btn-contratar" onclick="abrirDetalhes(${s.id}); event.stopPropagation()">
+                Ver mais
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── FILTROS ──
+function filtrarPor(f) {
+  filtroAtivo = f;
+  visiveis = 6;
+  document.querySelectorAll(".filter-pill").forEach(p => {
+    p.classList.toggle("active", p.dataset.filtro === f);
+  });
+  renderCards();
+  document.getElementById("cardsGrid").scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+document.querySelectorAll(".filter-pill").forEach(p => {
+  p.addEventListener("click", () => filtrarPor(p.dataset.filtro));
+});
+
+// ── BUSCA ──
+function buscarServicos() {
+  buscaTermo = document.getElementById("inputBusca").value.trim().toLowerCase();
+  filtroAtivo = "todos";
+  visiveis = 6;
+  document.querySelectorAll(".filter-pill").forEach(p => p.classList.toggle("active", p.dataset.filtro==="todos"));
+  renderCards();
+  document.getElementById("cardsGrid").scrollIntoView({ behavior:"smooth", block:"start" });
+}
+document.getElementById("inputBusca").addEventListener("keydown", e => { if(e.key==="Enter") buscarServicos(); });
+
+// ── FAV ──
+function toggleFav(e, id) {
+  e.stopPropagation();
+  if(favs.has(id)) { favs.delete(id); toast("❤️ Removido dos favoritos"); }
+  else { favs.add(id); toast("❤️ Adicionado aos favoritos!"); }
+  renderCards();
+}
+
+// ── CARREGAR MAIS ──
+function carregarMais() { visiveis += 3; renderCards(); }
+
+// ── MODAL DETALHES ──
+function abrirDetalhes(id) {
+  const s = servicos.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById("modalTitulo").textContent = s.titulo;
+  const stars = "★".repeat(Math.floor(s.nota)) + (s.nota%1>=0.5?"½":"");
+  document.getElementById("modalConteudo").innerHTML = `
+    <img src="${s.img}" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:16px;" alt="">
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <img src="${s.avatar}" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #eee;">
+      <div>
+        <div style="font-weight:600;">${s.prof}</div>
+        <div style="font-size:.82rem;color:#888;"><i class="bi bi-geo-alt me-1"></i>${s.cidade}</div>
+      </div>
+      ${s.tag?`<span style="margin-left:auto;background:${s.tag==='Verificado'?'#1A7F37':'var(--laranja)'};color:#fff;border-radius:6px;font-size:.72rem;padding:3px 10px;">${s.tag}</span>`:''}
+    </div>
+    <p style="color:#555;font-size:.9rem;line-height:1.7;">${s.desc}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+      <div style="background:#F5F4F0;border-radius:10px;padding:12px 18px;flex:1;min-width:120px;text-align:center;">
+        <div style="font-size:.75rem;color:#888;margin-bottom:4px;">Avaliação</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--laranja);">${stars} ${s.nota}</div>
+        <div style="font-size:.72rem;color:#aaa;">(${s.avaliacoes} avaliações)</div>
+      </div>
+      <div style="background:#F5F4F0;border-radius:10px;padding:12px 18px;flex:1;min-width:120px;text-align:center;">
+        <div style="font-size:.75rem;color:#888;margin-bottom:4px;">Preço</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--laranja);">R$ ${s.preco}/dia</div>
+        <div style="font-size:.72rem;color:#aaa;">orçamento grátis</div>
+      </div>
+      <div style="background:#F5F4F0;border-radius:10px;padding:12px 18px;flex:1;min-width:120px;text-align:center;">
+        <div style="font-size:.75rem;color:#888;margin-bottom:4px;">Categoria</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;text-transform:capitalize;">${s.categoria}</div>
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <button onclick="entrarContato('${s.prof}')" class="btn flex-1" style="flex:1;background:var(--laranja);color:#fff;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;padding:12px;">
+        <i class="bi bi-whatsapp me-1"></i>Entrar em contato
+      </button>
+      <button onclick="solicitarOrcamento('${s.prof}')" class="btn" style="border:1.5px solid var(--laranja);color:var(--laranja);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;padding:12px 14px;">
+        <i class="bi bi-file-text"></i>
+      </button>
+    </div>
+  `;
+  abrirModal("modalDetalhes");
+}
+
+function entrarContato(nome) {
+  fecharModal("modalDetalhes");
+  toast("📱 Abrindo WhatsApp de " + nome + "...");
+}
+function solicitarOrcamento(nome) {
+  fecharModal("modalDetalhes");
+  toast("📋 Orçamento solicitado para " + nome + "!");
+}
+
+// ── MODAL ANUNCIAR ──
+function abrirModalAnunciar(e) { e.preventDefault(); abrirModal("modalAnunciar"); }
+function enviarAnuncio(e) {
+  e.preventDefault();
+  fecharModal("modalAnunciar");
+  toast("✅ Anúncio publicado com sucesso!");
+}
+
+// ── MODAL HELPERS ──
+function abrirModal(id) { document.getElementById(id).classList.add("show"); }
+function fecharModal(id) { document.getElementById(id).classList.remove("show"); }
+document.querySelectorAll(".modal-overlay").forEach(m => {
+  m.addEventListener("click", e => { if(e.target===m) m.classList.remove("show"); });
+});
+
+// ── TOAST ──
+function toast(msg) {
+  const c = document.getElementById("toastContainer");
+  const d = document.createElement("div");
+  d.className = "toast-msg";
+  d.innerHTML = `<span>${msg}</span>`;
+  c.appendChild(d);
+  setTimeout(()=>{ d.style.opacity="0"; d.style.transition="opacity .3s"; setTimeout(()=>d.remove(),300); }, 2800);
+}
+
+// ── INIT ──
+renderCategorias();
+renderCards();
+    </script>
+</body>
+
+</html>
