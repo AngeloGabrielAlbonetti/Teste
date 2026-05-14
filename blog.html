@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Nytech — Insights e Tendências em Tecnologia</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --azul-principal: #0066FF;
+            --azul-escuro: #0052CC;
+            --roxo: #9945FF;
+            --rosa: #FF006E;
+            --fundo: #F8F9FA;
+            --texto: #1A1A1A;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* ── NAVBAR ── */
+        
+        .navbar-custom {
+            background: #FFFFFF;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #1A1A1A;
+            font-family: 'Syne', sans-serif;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--texto);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--azul-principal);
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
+        }
+        
+        .nav-btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--azul-principal);
+            color: var(--azul-principal);
+            margin-right: 12px;
+        }
+        
+        .nav-btn-secondary:hover {
+            background: var(--azul-principal);
+            color: #fff;
+        }
+        
+        /* ── BLOG HERO ── */
+        
+        .blog-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            opacity: 0.08;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blog-hero-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--texto);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .blog-hero-title .gradient {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .blog-hero-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ── BLOG FILTERS ── */
+        
+        .blog-filters {
+            padding: 40px 0;
+            background: #fff;
+        }
+        
+        .filter-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background: #f5f5f5;
+            border: 1.5px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--texto);
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--azul-principal);
+            color: var(--azul-principal);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: #fff;
+            border-color: transparent;
+        }
+        
+        /* ── BLOG GRID ── */
+        
+        .blog-section {
+            padding: 60px 0;
+            background: #fff;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+        
+        .blog-card {
+            background: #f9f9f9;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #efefef;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 102, 255, 0.15);
+            border-color: var(--azul-principal);
+            background: #fff;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-image.tech {
+            background: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+        }
+        
+        .blog-image.ai {
+            background: linear-gradient(135deg, #9945FF 0%, #FF006E 100%);
+        }
+        
+        .blog-image.dev {
+            background: linear-gradient(135deg, #FF006E 0%, #FFB800 100%);
+        }
+        
+        .blog-image.cloud {
+            background: linear-gradient(135deg, #00D4FF 0%, #00A8E8 100%);
+        }
+        
+        .blog-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--azul-principal);
+            margin-bottom: 12px;
+            background: rgba(0, 102, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            width: fit-content;
+        }
+        
+        .blog-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--texto);
+            line-height: 1.4;
+        }
+        
+        .blog-excerpt {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid #efefef;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .author-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        
+        .read-time {
+            color: #999;
+        }
+        
+        /* ── PAGINATION ── */
+        
+        .pagination-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 40px 0;
+        }
+        
+        .page-btn {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--texto);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .page-btn:hover {
+            border-color: var(--azul-principal);
+            color: var(--azul-principal);
+        }
+        
+        .page-btn.active {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--roxo) 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* ── SIDEBAR ── */
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .sidebar-card {
+            background: #f9f9f9;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid #efefef;
+        }
+        
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--texto);
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 0;
+        }
+        
+        .search-box input {
+            flex-grow: 1;
+            padding: 10px 14px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--azul-principal);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+        
+        .search-box button {
+            background: var(--azul-principal);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: var(--azul-escuro);
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .tag-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--texto);
+            font-size: 0.9rem;
+        }
+        
+        .tag-item:hover {
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--azul-principal);
+        }
+        
+        .tag-count {
+            background: #e8e8e8;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* ── FOOTER ── */
+        
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .footer-link {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--azul-principal);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+        
+        .footer-bottom a {
+            color: var(--azul-principal);
+            text-decoration: none;
+        }
+        
+        /* ── RESPONSIVE ── */
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 12px;
+            }
+            
+            .nav-link {
+                display: none;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="navbar-brand">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M80 140c-15 0-27-12-27-27s12-27 27-27' fill='none' stroke='%230066FF' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M80 140c-15 0-27 12-27 27s12 27 27 27' fill='none' stroke='%239945FF' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='60' cy='90' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='65' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='140' r='7' fill='%239945FF'/%3E%3Ccircle cx='140' cy='100' r='8' fill='%23FF006E'/%3E%3Ctext x='170' y='130' font-family='Syne' font-size='72' font-weight='800' fill='%230052CC'%3ENytech%3C/text%3E%3C/svg%3E"
+                    alt="Nytech">
+            </a>
+            <div class="nav-menu">
+                <a href="index.html#features" class="nav-link">Serviços</a>
+                <a href="index.html#about" class="nav-link">Sobre</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="pedreiropro.html" class="nav-btn nav-btn-secondary">PedreiroPro</a>
+                <a href="index.html#contact" class="nav-btn">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BLOG HERO -->
+    <section class="blog-hero">
+        <div class="container blog-hero-content">
+            <h1 class="blog-hero-title">
+                Insights e tendências em <span class="gradient">tecnologia</span>
+            </h1>
+            <p class="blog-hero-subtitle">
+                Acompanhe artigos, dicas e análises sobre desenvolvimento, IA, cloud computing e transformação digital.
+            </p>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="blog-filters">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterBlog('todos')">Todos</button>
+                <button class="filter-btn" onclick="filterBlog('tech')">Tecnologia</button>
+                <button class="filter-btn" onclick="filterBlog('ai')">IA & ML</button>
+                <button class="filter-btn" onclick="filterBlog('dev')">Desenvolvimento</button>
+                <button class="filter-btn" onclick="filterBlog('cloud')">Cloud</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-container">
+                <!-- GRID DE POSTS -->
+                <div>
+                    <div class="blog-grid" id="blogGrid">
+                        <!-- Posts serão injetados aqui via JavaScript -->
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <div class="pagination-wrapper" id="pagination">
+                        <!-- Pagination será injetada aqui -->
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="sidebar">
+                    <!-- SEARCH -->
+                    <div class="sidebar-card">
+                        <div class="search-box">
+                            <input type="text" placeholder="Buscar artigos..." id="searchInput">
+                            <button onclick="searchBlog()">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIAS -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Categorias</h3>
+                        <div class="tag-list">
+                            <a href="#" class="tag-item" onclick="filterBlog('tech'); return false;">
+                                <span>Tecnologia</span>
+                                <span class="tag-count">8</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('ai'); return false;">
+                                <span>IA & Machine Learning</span>
+                                <span class="tag-count">6</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('dev'); return false;">
+                                <span>Desenvolvimento Web</span>
+                                <span class="tag-count">7</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('cloud'); return false;">
+                                <span>Cloud Computing</span>
+                                <span class="tag-count">5</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('todos'); return false;">
+                                <span>Ver Todos</span>
+                                <span class="tag-count">26</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- POSTS RECENTES -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Mais Recentes</h3>
+                        <div class="tag-list">
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">React 19: Novas features</span>
+                                <span style="font-size: 0.8rem; color: #999;">5 dias atrás</span>
+                            </a>
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">Guia Completo de Docker</span>
+                                <span style="font-size: 0.8rem; color: #999;">1 semana atrás</span>
+                            </a>
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">IA Generativa na Prática</span>
+                                <span style="font-size: 0.8rem; color: #999;">2 semanas atrás</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nytech</h4>
+                    <p style="color: #aaa; margin-bottom: 0;">Soluções tecnológicas para o futuro.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <a href="#" class="footer-link">Desenvolvimento Web</a>
+                    <a href="#" class="footer-link">Aplicativos Mobile</a>
+                    <a href="#" class="footer-link">Inteligência Artificial</a>
+                    <a href="#" class="footer-link">Cloud Computing</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Carreira</a>
+                    <a href="pedreiropro.html" class="footer-link">PedreiroPro</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="mailto:nytech@gmail.com" class="footer-link">nytech@gmail.com</a>
+                    <a href="tel:+554499999999" class="footer-link">(44) 99999-9999</a>
+                    <a href="#" class="footer-link">Maringá, PR</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nytech. Todos os direitos reservados. | <a href="#">Privacidade</a> | <a href="#">Termos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Base de dados de posts
+        const posts = [
+            {
+                id: 1,
+                title: 'React 19: Novas Features e Melhorias',
+                excerpt: 'Conheça as principais novidades do React 19, incluindo melhorias de performance e novas APIs para desenvolvimento mais eficiente.',
+                category: 'dev',
+                author: 'Lucas Silva',
+                date: '2026-05-09',
+                readTime: '8 min',
+                icon: '⚛️'
+            },
+            {
+                id: 2,
+                title: 'Inteligência Artificial Generativa na Prática',
+                excerpt: 'Um guia completo sobre como integrar modelos de IA generativa em suas aplicações web e mobile.',
+                category: 'ai',
+                author: 'Maria Santos',
+                date: '2026-05-02',
+                readTime: '12 min',
+                icon: '🤖'
+            },
+            {
+                id: 3,
+                title: 'Docker e Containerização: O Guia Definitivo',
+                excerpt: 'Aprenda a usar Docker para containerizar suas aplicações e facilitar o deployment em diferentes ambientes.',
+                category: 'cloud',
+                author: 'João Costa',
+                date: '2026-04-28',
+                readTime: '15 min',
+                icon: '🐳'
+            },
+            {
+                id: 4,
+                title: 'Tendências em Segurança da Informação 2026',
+                excerpt: 'Análise das principais tendências e desafios em segurança de dados e proteção contra ameaças cibernéticas.',
+                category: 'tech',
+                author: 'Ana Paula',
+                date: '2026-04-21',
+                readTime: '10 min',
+                icon: '🔒'
+            },
+            {
+                id: 5,
+                title: 'Kubernetes: Orquestração de Containers em Escala',
+                excerpt: 'Domine Kubernetes e aprenda a orquestrar containers em ambientes de produção com alta disponibilidade.',
+                category: 'cloud',
+                author: 'Carlos Mendes',
+                date: '2026-04-18',
+                readTime: '14 min',
+                icon: '☸️'
+            },
+            {
+                id: 6,
+                title: 'Machine Learning para Iniciantes',
+                excerpt: 'Introdução prática a machine learning com Python, incluindo exemplos reais e ferramentas populares.',
+                category: 'ai',
+                author: 'Felipe Oliveira',
+                date: '2026-04-15',
+                readTime: '13 min',
+                icon: '📊'
+            },
+            {
+                id: 7,
+                title: 'Vue 3 Composition API: Tudo Que Você Precisa Saber',
+                excerpt: 'Guia completo sobre a Composition API do Vue 3, com exemplos práticos e boas práticas.',
+                category: 'dev',
+                author: 'Laura Ferreira',
+                date: '2026-04-10',
+                readTime: '11 min',
+                icon: '🖖'
+            },
+            {
+                id: 8,
+                title: 'Cloud Computing: AWS vs Azure vs Google Cloud',
+                excerpt: 'Comparação detalhada entre os principais provedores de cloud e como escolher o melhor para seu projeto.',
+                category: 'cloud',
+                author: 'Rafael Teixeira',
+                date: '2026-04-08',
+                readTime: '9 min',
+                icon: '☁️'
+            },
+            {
+                id: 9,
+                title: 'Redes Neurais Convolucionais para Visão Computacional',
+                excerpt: 'Entenda como funcionam as CNNs e como utilizá-las em projetos de reconhecimento de imagens.',
+                category: 'ai',
+                author: 'Beatriz Lima',
+                date: '2026-04-05',
+                readTime: '16 min',
+                icon: '👁️'
+            },
+            {
+                id: 10,
+                title: 'Performance em Aplicações Web: Otimizações Essenciais',
+                excerpt: 'Técnicas comprovadas para otimizar a performance de suas aplicações web e melhorar UX.',
+                category: 'dev',
+                author: 'Gustavo Rocha',
+                date: '2026-03-30',
+                readTime: '10 min',
+                icon: '⚡'
+            },
+            {
+                id: 11,
+                title: 'DevOps: CI/CD e Automação de Deploy',
+                excerpt: 'Implemente pipelines de CI/CD eficientes e automatize seu processo de desenvolvimento e deployment.',
+                category: 'cloud',
+                author: 'Mariana Costa',
+                date: '2026-03-25',
+                readTime: '12 min',
+                icon: '🔄'
+            },
+            {
+                id: 12,
+                title: 'NLP: Processamento de Linguagem Natural com Python',
+                excerpt: 'Aprenda técnicas de NLP para processar e analisar textos, desde análise de sentimentos até chatbots.',
+                category: 'ai',
+                author: 'Ricardo Santos',
+                date: '2026-03-20',
+                readTime: '14 min',
+                icon: '📝'
+            }
+        ];
+
+        let currentFilter = 'todos';
+        let currentPage = 1;
+        const postsPerPage = 6;
+
+        // Renderizar posts
+        function renderPosts(filter = 'todos', page = 1) {
+            const blogGrid = document.getElementById('blogGrid');
+            let filteredPosts = filter === 'todos' ? posts : posts.filter(p => p.category === filter);
+            
+            const startIdx = (page - 1) * postsPerPage;
+            const paginatedPosts = filteredPosts.slice(startIdx, startIdx + postsPerPage);
+
+            blogGrid.innerHTML = paginatedPosts.map(post => {
+                const categoryName = {
+                    tech: 'Tecnologia',
+                    ai: 'IA & ML',
+                    dev: 'Desenvolvimento',
+                    cloud: 'Cloud'
+                }[post.category];
+
+                return `
+                    <a href="#" class="blog-card">
+                        <div class="blog-image ${post.category}">
+                            ${post.icon}
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">${categoryName}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                            <div class="blog-footer">
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <div class="author-avatar">${post.author.charAt(0)}</div>
+                                        <span>${post.author}</span>
+                                    </div>
+                                </div>
+                                <span class="read-time">${post.readTime}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            renderPagination(filteredPosts.length, page);
+        }
+
+        // Renderizar paginação
+        function renderPagination(totalPosts, currentPageNum) {
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            let html = '';
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<button class="page-btn ${i === currentPageNum ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+            pagination.innerHTML = html;
+        }
+
+        // Filtrar posts
+        function filterBlog(filter) {
+            currentFilter = filter;
+            currentPage = 1;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderPosts(filter, 1);
+        }
+
+        // Ir para página
+        function goToPage(page) {
+            currentPage = page;
+            renderPosts(currentFilter, page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Buscar posts
+        function searchBlog() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (!query) {
+                renderPosts(currentFilter, 1);
+                return;
+            }
+
+            const blogGrid = document.getElementById('blogGrid');
+            const filtered = posts.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.excerpt.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                blogGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px;"><p style="color: #666;">Nenhum artigo encontrado.</p></div>';
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            blogGrid.innerHTML = filtered.map(post => {
+                const categoryName = {
+                    tech: 'Tecnologia',
+                    ai: 'IA & ML',
+                    dev: 'Desenvolvimento',
+                    cloud: 'Cloud'
+                }[post.category];
+
+                return `
+                    <a href="#" class="blog-card">
+                        <div class="blog-image ${post.category}">
+                            ${post.icon}
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">${categoryName}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                            <div class="blog-footer">
+                                <div class="blog-meta">
+                                    <div class="blog-author">
+                                        <div class="author-avatar">${post.author.charAt(0)}</div>
+                                        <span>${post.author}</span>
+                                    </div>
+                                </div>
+                                <span class="read-time">${post.readTime}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            document.getElementById('pagination').innerHTML = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') searchBlog();
+            });
+
+            // Renderizar posts iniciais
+            renderPosts();
+
+            // Intersection Observer para animações
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.blog-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s, transform 0.6s';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
