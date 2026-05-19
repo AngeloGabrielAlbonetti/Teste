@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Nytech — Insights e Tendências em Tecnologia</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="blogcss.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="navbar-brand">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M80 140c-15 0-27-12-27-27s12-27 27-27' fill='none' stroke='%230066FF' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M80 140c-15 0-27 12-27 27s12 27 27 27' fill='none' stroke='%239945FF' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='60' cy='90' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='65' r='7' fill='%230066FF'/%3E%3Ccircle cx='120' cy='140' r='7' fill='%239945FF'/%3E%3Ccircle cx='140' cy='100' r='8' fill='%23FF006E'/%3E%3Ctext x='170' y='130' font-family='Syne' font-size='72' font-weight='800' fill='%230052CC'%3ENytech%3C/text%3E%3C/svg%3E"
+                    alt="Nytech">
+            </a>
+            <div class="nav-menu">
+                <a href="../index.html#features" class="nav-link">Serviços</a>
+                <a href="../index.html#about" class="nav-link">Sobre</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="ptr/pedreiropro.html" class="nav-btn nav-btn-secondary">PedreiroPro</a>
+                <a href="../index.html#contact" class="nav-btn">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BLOG HERO -->
+    <section class="blog-hero">
+        <div class="container blog-hero-content">
+            <h1 class="blog-hero-title">
+                Insights e tendências em <span class="gradient">tecnologia</span>
+            </h1>
+            <p class="blog-hero-subtitle">
+                Acompanhe artigos, dicas e análises sobre desenvolvimento, IA, cloud computing e transformação digital.
+            </p>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="blog-filters">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterBlog('todos')">Todos</button>
+                <button class="filter-btn" onclick="filterBlog('tech')">Tecnologia</button>
+                <button class="filter-btn" onclick="filterBlog('ai')">IA & ML</button>
+                <button class="filter-btn" onclick="filterBlog('dev')">Desenvolvimento</button>
+                <button class="filter-btn" onclick="filterBlog('cloud')">Cloud</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-container">
+                <!-- GRID DE POSTS -->
+                <div>
+                    <div class="blog-grid" id="blogGrid">
+                        <!-- Posts serão injetados aqui via JavaScript -->
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <div class="pagination-wrapper" id="pagination">
+                        <!-- Pagination será injetada aqui -->
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="sidebar">
+                    <!-- SEARCH -->
+                    <div class="sidebar-card">
+                        <div class="search-box">
+                            <input type="text" placeholder="Buscar artigos..." id="searchInput">
+                            <button onclick="searchBlog()">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIAS -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Categorias</h3>
+                        <div class="tag-list">
+                            <a href="#" class="tag-item" onclick="filterBlog('tech'); return false;">
+                                <span>Tecnologia</span>
+                                <span class="tag-count">8</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('ai'); return false;">
+                                <span>IA & Machine Learning</span>
+                                <span class="tag-count">6</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('dev'); return false;">
+                                <span>Desenvolvimento Web</span>
+                                <span class="tag-count">7</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('cloud'); return false;">
+                                <span>Cloud Computing</span>
+                                <span class="tag-count">5</span>
+                            </a>
+                            <a href="#" class="tag-item" onclick="filterBlog('todos'); return false;">
+                                <span>Ver Todos</span>
+                                <span class="tag-count">26</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- POSTS RECENTES -->
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">Mais Recentes</h3>
+                        <div class="tag-list">
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">React 19: Novas features</span>
+                                <span style="font-size: 0.8rem; color: #999;">5 dias atrás</span>
+                            </a>
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">Guia Completo de Docker</span>
+                                <span style="font-size: 0.8rem; color: #999;">1 semana atrás</span>
+                            </a>
+                            <a href="#" class="tag-item" style="flex-direction: column; align-items: flex-start; padding: 12px;">
+                                <span style="font-weight: 600; margin-bottom: 4px;">IA Generativa na Prática</span>
+                                <span style="font-size: 0.8rem; color: #999;">2 semanas atrás</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nytech</h4>
+                    <p style="color: #aaa; margin-bottom: 0;">Soluções tecnológicas para o futuro.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <a href="#" class="footer-link">Desenvolvimento Web</a>
+                    <a href="#" class="footer-link">Aplicativos Mobile</a>
+                    <a href="#" class="footer-link">Inteligência Artificial</a>
+                    <a href="#" class="footer-link">Cloud Computing</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Carreira</a>
+                    <a href="pedreiropro.html" class="footer-link">PedreiroPro</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="mailto:nytech@gmail.com" class="footer-link">nytech@gmail.com</a>
+                    <a href="tel:+554499999999" class="footer-link">(44) 99999-9999</a>
+                    <a href="#" class="footer-link">Maringá, PR</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nytech. Todos os direitos reservados. | <a href="#">Privacidade</a> | <a href="#">Termos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="blogjs.js"></script>
+</body>
+
+</html>
