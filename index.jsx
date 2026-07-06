@@ -1,6 +1,3 @@
-const { useState, useEffect, useRef } = React;
-
-/* ---------- Reveal on scroll ---------- */
 function useReveal(){
   const ref = useRef(null);
   const [shown, setShown] = useState(false);
